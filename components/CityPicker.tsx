@@ -1,19 +1,23 @@
 'use client';
 
 import { Country, City } from 'country-state-city';
-import { Select } from '@tremor/react';
+import Select from 'react-select';
 
 const options = Country.getAllCountries().map((country) => ({
-  label: {
+  value: {
     latitude: country.latitude,
     longitude: country.longitude,
     isoCode: country.isoCode,
   },
-  value: country.isoCode,
+  label: country.isoCode,
 }));
 
 function CityPicker() {
-  return <div>CityPicker</div>;
+  return (
+    <div>
+      <Select options={options} />
+    </div>
+  );
 }
 
 export default CityPicker;
