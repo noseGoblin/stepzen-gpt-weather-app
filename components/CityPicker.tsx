@@ -9,7 +9,7 @@ const options = Country.getAllCountries().map((country) => ({
     longitude: country.longitude,
     isoCode: country.isoCode,
   },
-  label: country.isoCode,
+  label: country.name,
 }));
 
 function CityPicker() {
