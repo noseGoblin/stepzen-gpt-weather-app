@@ -34,6 +34,17 @@ const options = Country.getAllCountries().map((country) => ({
   label: country.name,
 }));
 
+// const cityOptions = City.getAllCities().map((city) => ({
+//   value: {
+//     latitude: city.latitude,
+//     longitude: city.longitude,
+//     countryCode: city.countryCode,
+//     name: city.name,
+//     stateCode: city.stateCode,
+//   },
+//   label: city.name,
+// }));
+
 function CityPicker() {
   const [selectedCountry, setSelectedCountry] = useState<option>(null);
   const [selectedCity, setSelectedCity] = useState<cityOption>(null);
@@ -44,17 +55,53 @@ function CityPicker() {
     setSelectedCity(null);
   };
 
+  const hanldeSelectedCity = (option: cityOption) => {
+    setSelectedCity(option);
+    // router.push(
+    //   `/location/${option?.value.latitude}/${option?.value.longitude}`
+    // );
+  };
+
   return (
     <div className='space-y-4'>
-      <div className='flex items-center space-x-2 text-white/80'>
-        <GlobeIcon className='h-5 w-5 text-white' />
-        <label htmlFor='country'>Country</label>
+      <div className='space-y-2'>
+        <div className='flex items-center space-x-2 text-white/80'>
+          <GlobeIcon className='h-5 w-5 text-white' />
+          <label htmlFor='country'>Country</label>
+        </div>
+        <Select
+          className='text-black'
+          value={selectedCountry}
+          onChange={hanldeSelectedCountry}
+          options={options}
+        />
       </div>
-      <Select
-        value={selectedCountry}
-        onChange={hanldeSelectedCountry}
-        options={options}
-      />
+
+      {selectedCountry && (
+        <div className='space-y-2'>
+          <div className='flex items-center space-x-2 text-white/80'>
+            <GlobeIcon className='h-5 w-5 text-white' />
+            <label htmlFor='country'>City</label>
+          </div>
+          <Select
+            className='text-black'
+            value={selectedCity}
+            onChange={hanldeSelectedCity}
+            options={City.getCitiesOfCountry(
+              selectedCountry.value.isoCode
+            )?.map((state) => ({
+              value: {
+                latitude: state.latitude!,
+                longitude: state.longitude!,
+                countryCode: state.countryCode,
+                name: state.name,
+                stateCode: state.stateCode,
+              },
+              label: state.name,
+            }))}
+          />
+        </div>
+      )}
     </div>
   );
 }
