@@ -1,6 +1,7 @@
 import { getClient } from '@/apollo-client';
 import CalloutCard from '@/components/CalloutCard';
 import InfoPanel from '@/components/InfoPanel';
+import RainChart from '@/components/RainChart';
 import StatCard from '@/components/StatCard';
 import TempChart from '@/components/TempChart';
 import fetchWeatherQuery from '@/graphql/queries/fetchWeatherQueries';
@@ -85,7 +86,9 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
 
               <StatCard
                 title='Wind Direction'
-                metric={`${results.current_weather.winddirection.toFixed(1)}°`}
+                metric={`${results.current_weather.winddirection.toFixed(
+                  1
+                )} m/s`}
                 color='fuchsia'
               />
             </div>
@@ -96,6 +99,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
 
         <div className='space-y-3'>
           <TempChart results={results} />
+          <RainChart results={results} />
           {/* RainChart */}
           {/* HumidityChart */}
         </div>
