@@ -1,5 +1,6 @@
 import { getClient } from '@/apollo-client';
 import CalloutCard from '@/components/CalloutCard';
+import HumidityChart from '@/components/HumidityChart';
 import InfoPanel from '@/components/InfoPanel';
 import RainChart from '@/components/RainChart';
 import StatCard from '@/components/StatCard';
@@ -100,8 +101,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
         <div className='space-y-3'>
           <TempChart results={results} />
           <RainChart results={results} />
-          {/* RainChart */}
-          {/* HumidityChart */}
+          <HumidityChart results={results} />
         </div>
       </div>
     </div>
