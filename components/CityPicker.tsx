@@ -34,17 +34,6 @@ const options = Country.getAllCountries().map((country) => ({
   label: country.name,
 }));
 
-// const cityOptions = City.getAllCities().map((city) => ({
-//   value: {
-//     latitude: city.latitude,
-//     longitude: city.longitude,
-//     countryCode: city.countryCode,
-//     name: city.name,
-//     stateCode: city.stateCode,
-//   },
-//   label: city.name,
-// }));
-
 function CityPicker() {
   const [selectedCountry, setSelectedCountry] = useState<option>(null);
   const [selectedCity, setSelectedCity] = useState<cityOption>(null);
@@ -57,9 +46,9 @@ function CityPicker() {
 
   const hanldeSelectedCity = (option: cityOption) => {
     setSelectedCity(option);
-    // router.push(
-    //   `/location/${option?.value.latitude}/${option?.value.longitude}`
-    // );
+    router.push(
+      `/location/${option?.value.latitude}/${option?.value.longitude}`
+    );
   };
 
   return (
