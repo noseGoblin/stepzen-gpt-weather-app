@@ -7,7 +7,11 @@ type Props = {
 };
 
 function WeatherPage({ params: { city, lat, long } }: Props) {
-  return <div>Welcome to the WeatherPage</div>;
+  return (
+    <div>
+      Welcome to the WeatherPage: {city} {lat} {long}
+    </div>
+  );
 }
 
 export default WeatherPage;
