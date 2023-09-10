@@ -1,5 +1,6 @@
 import { getClient } from '@/apollo-client';
 import CalloutCard from '@/components/CalloutCard';
+import StatCard from '@/components/StatCard';
 import fetchWeatherQuery from '@/graphql/queries/fetchWeatherQueries';
 
 type Props = {
@@ -46,7 +47,33 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
             <CalloutCard message='This is where GPT-4 Summary will go!' />
           </div>
 
-          <div></div>
+          <div>
+            <StatCard
+              title='Maximum Temperature'
+              metric={`${results.daily.temperature_2m_max[0].toFixed(1)}°C`}
+              color='yellow'
+            />
+
+            <StatCard
+              title='Minimum Temperature'
+              metric={`${results.daily.temperature_2m_min[0].toFixed(1)}°C`}
+              color='green'
+            />
+          </div>
+
+          <div>
+            <StatCard
+              title='UV Index'
+              metric={results.daily.uv_index_max[0].toFixed(1)}
+              color='rose'
+            />
+            {Number(results.daily.uv_index_max[0].toFixed(1)) > 5 && (
+              <CalloutCard
+                message={'The UV is high today, be sure to wear SPF!'}
+                warning
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
