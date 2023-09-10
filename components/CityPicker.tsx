@@ -45,6 +45,9 @@ function CityPicker() {
 
   return (
     <div>
+      <div>
+        <label htmlFor='country'>Country</label>
+      </div>
       <Select
         value={selectedCountry}
         onChange={hanldeSelectedCountry}
