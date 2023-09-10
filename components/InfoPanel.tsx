@@ -38,6 +38,14 @@ function InfoPanel({ city, lat, long, results }: Props) {
             Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}
           </p>
         </div>
+
+        <p className='text-xl font-bold uppercase'>
+          {new Date().toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+          })}
+        </p>
       </div>
     </div>
   );
