@@ -6,6 +6,7 @@ import RainChart from '@/components/RainChart';
 import StatCard from '@/components/StatCard';
 import TempChart from '@/components/TempChart';
 import fetchWeatherQuery from '@/graphql/queries/fetchWeatherQueries';
+import cleanData from '@/lib/cleanData';
 import getBasePath from '@/lib/getBasePath';
 
 export const revalidate = 60;
