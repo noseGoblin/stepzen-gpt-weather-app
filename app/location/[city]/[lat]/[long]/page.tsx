@@ -32,7 +32,9 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
 
   const results: Root = data.myQuery;
 
-  console.log(results.hourly.time);
+  const dataToSend = cleanData(results, city);
+
+  const res = await fetch();
 
   return (
     <div className='flex flex-col min-h-screen md:flex-row'>
