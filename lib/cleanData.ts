@@ -35,5 +35,9 @@ const cleanData = (data: Root, city: string) => {
       precipitation_probability: precipitation_probability.slice(0, 24),
       uv_index: uv_index.slice(0, 24),
     },
+    timezone,
+    timezone_abbreviation,
+    hourly_units,
+    city,
   };
 };
